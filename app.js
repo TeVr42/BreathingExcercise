@@ -5,15 +5,15 @@ var breathImage = document.getElementById("breathImage");
 function breathing() {
 
     function breatheIn() {
-        update("Nádech", 4, true, breatheHold);
+        update("Nádech", 4, "inhale", breatheHold);
     }
 
     function breatheHold() {
-        update("Zadrž dech", 7, false, breatheOut);
+        update("Zadrž dech", 7, "hold", breatheOut);
     }
 
     function breatheOut() {
-        update("Výdech", 8, true, breatheIn);
+        update("Výdech", 8, "exhale", breatheIn);
     }
 
     breatheIn();
@@ -22,14 +22,11 @@ function breathing() {
 
 function update(instruction, breathTime, breathingDog, callback) {
     let i = 0;
+    
     const interval = setInterval(() => {
         if (i === 0) {
             instructionText.innerText = instruction;
-            if (breathingDog) {
-                breathImage.src = "img/dog_breathe.png";
-            } else {
-                breathImage.src = "img/dog_hold.png";
-            }
+            breathImage.src = "img/dog_" + breathingDog + ".png";
         }
         timeScale.style.width = (i / breathTime) * 100 + "%";
         i++;

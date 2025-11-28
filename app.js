@@ -28,10 +28,10 @@ function update(instruction, breathTime, breathingDog, callback) {
             instructionText.innerText = instruction;
             breathImage.src = "img/dog_" + breathingDog + ".png";
         }
-        timeScale.style.width = (i / breathTime) * 100 + "%";
         i++;
+        timeScale.style.width = (i / breathTime) * 100 + "%";
 
-        if (i > breathTime) {
+        if (i >= breathTime) {
             clearInterval(interval);
             if (callback) callback();
         }
